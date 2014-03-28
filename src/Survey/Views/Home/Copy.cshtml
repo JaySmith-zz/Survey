@@ -1,0 +1,46 @@
+﻿@using System.Web.Optimization
+@model Tyson.Hr.Survey.ViewModels.HomeCopyViewModel
+
+@{
+    ViewBag.Title = "Copy";
+}
+
+<h2>Copy Questionnaire Results</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <p>
+            @Html.HiddenFor(model => model.SourceQuestionnaireId)
+            Copy <b>@Model.SourceQuestionnaire.QuestionniareName</b> to @Html.DropDownListFor(n => n.TargetQuestionId, Model.AvailableQuestionnaires)
+            @Html.ValidationMessageFor(model => model.AvailableQuestionnaires)
+        </p>
+        <p>
+            Completing this action will copy ALL response from the source questionnaire to the selected questionnaire.<br/> 
+            Any answers in the selected questionnaire will be overwritten.
+        </p>
+        <div style="float: right; margin-top: 20px;">
+            <input id="buttonCopy" type="submit" value="Copy" />
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(
+            function() {
+                $("#buttonCopy").click(function() {
+                    if ($("#TargetQuestionId").val() != "") {
+                        //$("#working-modal").dialog({ modal: true });
+                        WorkingDialogShow();
+                    } else {
+                        alert("* Target Questionnaire required");
+                    }
+                });
+            }
+        );
+    </script>
+}

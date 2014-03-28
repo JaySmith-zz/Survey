@@ -1,0 +1,15 @@
+﻿@model Tyson.Hr.Survey.ViewModels.QuestionViewModel
+
+@{
+    var inputValue = string.Empty;
+    if (!string.IsNullOrEmpty(Model.Value))
+    {
+        inputValue = Model.Value;
+    }
+
+    var disabled = Model.Status == "Disabled" ? Model.Status : string.Empty;
+    
+    <input type="text" questionType="date" data-val="@Model.IsRequired.ToString().ToLower()" data-val-required="*" 
+           data-val-date="Must be a valid date." id="@Model.Id" name="@Model.Id" value="@inputValue" 
+            questionCode="@Model.QuestionCode" displayLogic='@Model.DisplayLogic' displayText="@Model.Value" readonly="readonly" @disabled/>
+}

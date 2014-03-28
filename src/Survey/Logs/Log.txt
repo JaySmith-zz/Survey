@@ -1,0 +1,38 @@
+2014-03-06 09:01:37.2600|INFO|Default|Application Startup Completed
+2014-03-06 09:22:38.5001|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:22:38.8192|INFO|Default|Application Shutdown
+2014-03-06 09:22:47.5700|INFO|Default|Application Startup Completed
+2014-03-06 09:22:50.5283|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:23:48.0031|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:24:37.3360|INFO|Default|Application Shutdown
+2014-03-06 09:24:48.2351|INFO|Default|Application Startup Completed
+2014-03-06 09:25:24.6217|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:25:52.8706|INFO|Default|Application Shutdown
+2014-03-06 09:25:59.6803|INFO|Default|Application Startup Completed
+2014-03-06 09:32:54.6087|INFO|Default|Application Shutdown
+2014-03-06 09:35:30.7714|INFO|Default|Application Startup Completed
+2014-03-06 09:37:03.3636|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:37:18.5551|INFO|Default|Application Shutdown
+2014-03-06 09:37:25.6548|INFO|Default|Application Startup Completed
+2014-03-06 09:38:51.0353|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:39:16.9783|INFO|Default|Application Shutdown
+2014-03-06 09:39:24.4353|INFO|Default|Application Startup Completed
+2014-03-06 09:39:58.0023|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:41:41.0293|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:45:30.1003|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Edit/1
+2014-03-06 09:46:11.6293|INFO|Default|Application Shutdown
+2014-03-06 09:46:28.2103|INFO|Default|Application Startup Completed
+2014-03-06 09:47:35.8383|INFO|Default|Application Shutdown
+2014-03-06 09:47:42.6323|INFO|Default|Application Startup Completed
+2014-03-06 09:56:33.4823|INFO|Default|Application Shutdown
+2014-03-06 10:11:14.9429|INFO|Default|Application Startup Completed
+2014-03-06 10:12:29.6023|INFO|Default|Application Startup Completed
+2014-03-06 10:14:22.8153|INFO|Default|Application Startup Completed
+2014-03-06 10:15:52.8123|INFO|Default|Application Startup Completed
+2014-03-06 10:26:13.6378|INFO|Default|Application Startup Completed
+2014-03-06 10:26:32.1546|INFO|Default|Application Startup Completed
+2014-03-06 11:00:05.3089|INFO|Default|Application Shutdown
+2014-03-06 13:46:42.0835|INFO|Default|Application Startup Completed
+2014-03-06 13:51:04.1347|INFO|Default|Application Shutdown
+2014-03-06 13:52:46.9500|INFO|Default|Application Startup Completed
+2014-03-06 13:54:01.4605|INFO|Default|Application Shutdown

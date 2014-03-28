@@ -1,0 +1,20 @@
+2014-02-28 14:51:05.2287|INFO|Default|Application Startup Completed
+2014-02-28 15:16:08.5330|INFO|Default|Application Startup Completed
+2014-02-28 15:19:11.5333|INFO|Default|Application Startup Completed
+2014-02-28 15:24:49.5981|INFO|Default|Application Startup Completed
+2014-02-28 15:27:24.2008|INFO|Default|Application Startup Completed
+2014-02-28 15:27:34.0298|INFO|Default|Application Startup Completed
+2014-02-28 15:35:21.1168|INFO|Default|Application Startup Completed
+2014-02-28 15:57:30.6262|INFO|Default|Application Startup Completed
+2014-02-28 16:03:29.6612|INFO|Default|Application Shutdown
+2014-02-28 16:06:27.1422|INFO|Default|Application Startup Completed
+2014-02-28 16:11:00.6332|INFO|Default|Application Shutdown
+2014-02-28 16:11:11.2323|INFO|Default|Application Startup Completed
+2014-02-28 16:23:59.7251|INFO|Default|Application Shutdown
+2014-02-28 16:24:14.7956|INFO|Default|Application Startup Completed
+2014-02-28 16:24:48.8120|INFO|Default|Application Shutdown
+2014-02-28 16:24:57.5039|INFO|Default|Application Startup Completed
+2014-02-28 16:31:30.0941|INFO|Default|Application Shutdown
+2014-02-28 16:31:45.4247|INFO|Default|Application Startup Completed
+2014-02-28 16:35:37.5924|INFO|Default|Application Shutdown
+2014-02-28 16:35:50.9834|INFO|Default|Application Startup Completed

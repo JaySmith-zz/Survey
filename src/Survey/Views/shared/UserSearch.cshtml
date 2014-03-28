@@ -1,0 +1,41 @@
+﻿<style>
+     #search_results tbody tr:hover {
+         /*background-color: orange;*/
+         cursor: pointer;
+     }
+
+     .no-close .ui-dialog-titlebar-close {
+         display: none;
+     }
+ </style>
+
+<div style="display: none;" id="find_user" title="Find User">
+    <table style="width: 100%">
+        <tr>
+            <td>First Name</td>
+            <td>
+                <input type="text" id="textboxFirstName" autofocus /></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>
+                <input type="text" id="textboxLastName" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="float: right;">
+                <button id="buttonSearch" value="Search">Search</button></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+    <table id="search_results" style="width: 350px">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>UserName</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

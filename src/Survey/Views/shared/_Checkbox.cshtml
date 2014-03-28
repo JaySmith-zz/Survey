@@ -1,0 +1,40 @@
+﻿@model Tyson.Hr.Survey.ViewModels.QuestionViewModel
+
+@foreach (var choice in Model.Choices)
+{
+    var isChecked = string.Empty;
+    if (choice.SelectedInd == "True")
+    {
+        isChecked = "checked";
+    }
+
+    var isRequired = "required=\"required\"";
+    if (!Model.IsRequired)
+    {
+        isRequired = string.Empty;
+    }
+    
+    <input id="@choice.Identifier" type="checkbox" name="@Model.Id" @isChecked value="@choice.DisplayText" 
+        displayText="@choice.DisplayText" @isRequired data-val='@Model.IsRequired.ToString().ToLower()' data-val-required="*" questionCode="@Model.QuestionCode" displayLogic='@Model.DisplayLogic'/>
+    <label for="@choice.Identifier">@choice.DisplayText</label>
+
+    
+    if (String.IsNullOrEmpty(choice.DisplayText) == false)
+    {
+        if (choice.DisplayText.ToUpper().Contains("OTHER"))
+        {
+            var commentId = string.Format("{0}_Comment", Model.Id);
+
+            <span class="field-validation-valid" data-valmsg-for="@commentId" data-valmsg-replace="true" ></span>
+            if (choice.SelectedInd == "True")
+            {
+                <input type="text" maxlength="150" data-val="true" data-val-required="*" name="@commentId" id="@commentId" value="@choice.Comment" />
+            }
+            else
+            {
+                <input type="text" maxlength="150" data-val="true" data-val-required="*" name="@commentId" id="@commentId" style="display: none" />
+            }          
+        }   
+    }        
+    <br />
+}

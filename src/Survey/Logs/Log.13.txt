@@ -1,0 +1,10 @@
+2014-03-03 19:37:20.9994|INFO|Default|Application Startup Completed
+2014-03-03 19:42:55.5477|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/SaveQuestionResponses
+2014-03-03 19:43:11.8332|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/SaveQuestionResponses
+2014-03-03 19:43:44.8721|INFO|Default|Application Startup Completed
+2014-03-03 19:48:34.5831|INFO|Default|Application Startup Completed
+2014-03-03 19:51:59.7823|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/SaveQuestionResponses
+2014-03-03 19:53:54.6089|INFO|Default|Application Startup Completed
+2014-03-03 19:56:27.7076|INFO|Default|Application Startup Completed
+2014-03-03 20:05:13.6484|INFO|Default|Application Startup Completed
+2014-03-03 20:08:32.3642|INFO|Default|Application Startup Completed

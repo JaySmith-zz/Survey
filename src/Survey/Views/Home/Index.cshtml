@@ -1,0 +1,167 @@
+﻿@using System.Globalization
+@using Tyson.Hr.Survey.Core.Domain
+@model IEnumerable<Tyson.Hr.Survey.ViewModels.HomeIndexViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+            </hgroup>
+            <p>
+                Welcome to the Tyson Questionnaire site.  This site provides a way for Corporate to 
+                gather information necessary to evaluate the companies current practices in areas of 
+                interest in order to better plan for the future.
+            </p>
+        </div>
+    </section>
+}
+
+<h2>@ViewBag.Message</h2>
+
+<h3>Questionnaires:</h3>
+
+@if (Model.Any())
+{
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Survey</th>
+            <th>Questionnaire</th>
+            <th>Owner</th>
+            <th>Last Modified</th>
+            <th>Modified By</th>
+            <th>&nbsp;</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="white-space: nowrap">
+                     @if (item.Status == QuestionnaireStatus.Complete
+                          && !User.IsInRole("Administrator")
+                          && !User.IsInRole("Survey Manager"))
+                     {
+                         @Html.DisplayFor(modelItem => item.Status)
+                     }
+                     else
+                     {
+                         @Html.DropDownList(item.Id.ToString(CultureInfo.InvariantCulture), item.StatusSelectListItems)
+                     }
+                </td>
+                <td style="white-space: nowrap">
+                    @Html.DisplayFor(modelItem => item.SurveyName)
+                </td>
+                <td style="white-space: nowrap">
+                    @if (item.Status == QuestionnaireStatus.Complete
+                        && !User.IsInRole("Administrator")
+                        && !User.IsInRole("Survey Manager"))
+                    {
+                        @Html.DisplayFor(modelItem => item.QuestionnareName)
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.QuestionnareName, "Edit", new { id = item.Id }, new { @class = "loadQuestionniare" })
+                    }
+                </td>
+                <td style="white-space: nowrap">
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td style="white-space: nowrap">
+                    @Html.DisplayFor(modelItem => item.ModifiedDate, "ShortDateTime")
+                </td>
+                <td style="white-space: nowrap">
+                    @Html.DisplayFor(modelItem => item.ModifiedBy)
+                </td>
+                <td style="white-space:nowrap;">
+                    @if (item.OwnerId == User.Identity.Name.ToUpper() || User.IsInRole("Survey Manager") || User.IsInRole("Administrator"))
+                    {
+                        <a class="fileExcelExport" style="padding-right: 0;" href="@Url.Action("Export", "Home", new { id = item.Id })" title="Export to Microsoft Excel">
+                            <img style="border: 0;" src="@Url.Content("~/Content/Images/export_excel.png")"/></a>
+                    }
+                    @if (item.Status == QuestionnaireStatus.Complete 
+                        && item.OwnerId == User.Identity.Name.ToUpper() 
+                        && ViewBag.OwnerCount > 1
+                        && ViewBag.IncompleteCount > 0)
+                    {
+                        <a id="linkCopy" style="padding-right: 0;" href="@Url.Action("Copy", "Home", new { id = item.Id })" title="Copy responses to another Questionnaire.">
+                            <img style="border: 0;" src="@Url.Content("~/Content/Images/copy.gif")"/></a>
+                    }
+                    else
+                    {
+                        <img style="border: 0;padding-right: 4px;" src="@Url.Content("~/Content/Images/spacer.gif")"/>
+                    }
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a class="requestQuestionnaire" id="linkReset" style="padding-right: 0;" href="@Url.Action("Reset", "Home", new { id = item.Id })" title="Reset Questionnaire">
+                            <img id="linkResetImage" style="border: 0;" src="@Url.Content("~/Content/Images/reset_16x16.gif")"/></a>
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
+    <div style="display: none;" id="preparing-file-modal" title="Exporting...">
+        Exporting Questionnaire to Excel, please wait...     
+        <div style="width: 100%; height: 22px; margin-top: 20px;" class="ui-progressbar-value ui-corner-left ui-corner-right"></div>
+    </div>
+    <div style="display: none;" id="error-modal" title="Error">
+        There was a problem generating Excel file, please try again.
+    </div>
+}
+else
+{
+    <p>
+        You do not have any questionnaires to fill out at this time.
+    </p>
+}
+@section Scripts {
+    @Html.Partial("AjaxUrls")
+    <script src="~/Scripts/survey.questionnaire.ajax.js" type="text/javascript"></script>
+    <script src="~/Scripts/json2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jQuery.download.js"></script>
+    <script type="text/javascript">
+        $(
+            function () {
+                $("table").css("border-collapse", "collapse");
+                $("tr:odd").css("background-color", "#FFFFFF");
+
+                $(".fileExcelExport").click(function () {
+                    var preparingFileModal = $("#preparing-file-modal");
+
+                    preparingFileModal.dialog({ modal: true });
+
+                    $.fileDownload($(this).prop('href'), {
+                        successCallback: function () {
+                            preparingFileModal.dialog('close');
+                        },
+                        failCallback: function () {
+                            preparingFileModal.dialog('close');
+                            $("#error-modal").dialog({ modal: true });
+                        }
+                    });
+                    return false;
+                });
+                
+                $("select").change(SelectOneChangeHandler);
+
+                $(".requestQuestionnaire").click(function () {
+                    WorkingDialogShow();
+                });
+
+                $(".loadQuestionniare").click(function () {
+                    LoadingDialogShow();
+                });
+            }
+        );
+        
+        function SelectOneChangeHandler() {
+            var selectedText = $("select[name='" + this.name + "']").children("option").filter(":selected").text();
+            WorkingDialogShow();
+            SetQuestionnareStatus(this.name, selectedText, window.ajaxSetQuestionnaireStatusUrl);
+            WorkingDialogClose();
+        }
+    </script>
+}

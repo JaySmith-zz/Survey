@@ -1,0 +1,8 @@
+2014-02-19 11:34:32.6959|INFO|Default|Application Startup Completed
+2014-02-19 13:53:53.7793|INFO|Default|Application Shutdown
+2014-02-19 13:55:17.1803|INFO|Default|Application Startup Completed
+2014-02-19 14:31:20.3613|INFO|Default|Application Shutdown
+2014-02-19 14:31:29.0103|INFO|Default|Application Startup Completed
+2014-02-19 14:37:19.5093|INFO|Default|Application Shutdown
+2014-02-19 14:40:20.6653|INFO|Default|Application Startup Completed
+2014-02-19 16:54:40.1795|INFO|Default|Application Startup Completed

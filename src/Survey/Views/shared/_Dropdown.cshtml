@@ -1,0 +1,39 @@
+﻿@model Tyson.Hr.Survey.ViewModels.QuestionViewModel
+
+@{            
+    <select data-val="@Model.IsRequired.ToString().ToLower()" data-val-required="*" id="@Model.Id" name="@Model.Id" 
+        questionCode="@Model.QuestionCode" displayLogic='@Model.DisplayLogic'>
+
+        <option value=""></option>
+
+        @foreach (var selectListItem in Model.Choices)
+        {
+            if (selectListItem.SelectedInd == "True")
+            {
+            <option selected="selected" value="@selectListItem.Identifier">@selectListItem.DisplayText</option>
+            }
+            else
+            {
+            <option value="@selectListItem.Identifier">@selectListItem.DisplayText</option>
+            }
+        }
+    </select>
+    
+    foreach (var choice in Model.Choices)
+    {
+        if (choice.DisplayText.ToUpper().Contains("OTHER"))
+        {
+            var commentId = string.Format("{0}_Comment", Model.Id);
+
+            <span class="field-validation-valid" data-valmsg-for="@commentId" data-valmsg-replace="true" ></span>
+            if (choice.SelectedInd == "True")
+            {
+                <input type="text" maxlength="150" data-val="true" data-val-required="*" name="@commentId" id="@commentId" value="@choice.Comment" />
+            }
+            else
+            {
+                <input type="text" maxlength="150" data-val="true" data-val-required="*" name="@commentId" id="@commentId" style="display: none" />
+            }                       
+        }          
+    }
+}

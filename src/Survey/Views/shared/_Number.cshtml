@@ -1,0 +1,14 @@
+﻿@model Tyson.Hr.Survey.ViewModels.QuestionViewModel
+
+@{
+    var inputValue = string.Empty;
+    if (!string.IsNullOrEmpty(Model.Value))
+    {
+        inputValue = Model.Value;
+    }
+
+    var disabled = Model.Status == "Disabled" ? Model.Status : string.Empty;
+    
+    <input  type="text" id="number" name="@Model.Id" value="@inputValue" data-val="@Model.IsRequired.ToString().ToLower()" 
+        data-val-required="*" data-val-number="Must be a number." displayLogic='@Model.DisplayLogic' displayText="@Model.Value" @disabled/>
+}

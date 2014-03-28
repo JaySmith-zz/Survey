@@ -1,0 +1,26 @@
+2014-02-18 15:00:55.6449|INFO|Default|Application Startup Completed
+2014-02-18 15:00:57.7201|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-18 15:07:22.6516|INFO|Default|Application Shutdown
+2014-02-18 15:30:43.0296|INFO|Default|Application Startup Completed
+2014-02-18 15:30:50.6634|INFO|Default|Application Shutdown
+2014-02-18 15:30:52.2615|INFO|Default|Application Startup Completed
+2014-02-18 15:32:33.3096|INFO|Default|Application Shutdown
+2014-02-18 15:33:53.6537|INFO|Default|Application Startup Completed
+2014-02-18 15:37:59.4962|INFO|Default|Application Shutdown
+2014-02-18 15:38:28.0471|INFO|Default|Application Startup Completed
+2014-02-18 15:41:26.4439|INFO|Default|Application Shutdown
+2014-02-18 15:41:39.9573|INFO|Default|Application Startup Completed
+2014-02-18 16:04:46.4209|INFO|Default|Application Shutdown
+2014-02-18 16:15:44.1907|INFO|Default|Application Startup Completed
+2014-02-18 16:17:20.2653|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:17:20.2653|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:17:20.2653|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:17:20.2653|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:17:20.2653|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:17:20.2653|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:22:37.9601|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:22:53.9017|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:23:45.7848|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:25:03.2696|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:27:15.1759|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1
+2014-02-18 16:33:46.0053|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/Home/Create/1

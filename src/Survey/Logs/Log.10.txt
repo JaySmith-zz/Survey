@@ -1,0 +1,62 @@
+2014-02-25 10:09:10.7061|INFO|Default|Application Startup Completed
+2014-02-25 10:20:22.0247|INFO|Default|Application Shutdown
+2014-02-25 10:20:25.4691|INFO|Default|Application Startup Completed
+2014-02-25 10:22:41.0656|INFO|Default|Application Shutdown
+2014-02-25 10:41:14.3329|INFO|Default|Application Startup Completed
+2014-02-25 10:44:45.5451|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-25 10:44:45.7011|INFO|Default|Application Shutdown
+2014-02-25 10:58:06.3641|INFO|Default|Application Startup Completed
+2014-02-25 10:59:01.1008|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-25 11:31:59.1168|INFO|Default|Application Shutdown
+2014-02-25 11:44:36.8389|INFO|Default|Application Startup Completed
+2014-02-25 11:45:32.8838|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-25 11:46:38.3279|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-25 12:07:35.2358|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-25 12:15:27.9502|INFO|Default|Application Shutdown
+2014-02-25 12:15:42.2020|INFO|Default|Application Startup Completed
+2014-02-25 12:16:39.8915|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-25 12:16:39.9383|INFO|Default|Application Shutdown
+2014-02-25 12:17:56.3638|INFO|Default|Application Startup Completed
+2014-02-25 13:59:40.1654|INFO|Default|Application Shutdown
+2014-02-25 14:15:04.8799|INFO|Default|Application Startup Completed
+2014-02-25 14:27:56.5568|INFO|Default|Application Shutdown
+2014-02-25 14:28:07.7440|INFO|Default|Application Startup Completed
+2014-02-25 14:34:24.2616|INFO|Default|Application Startup Completed
+2014-02-25 14:35:39.1531|INFO|Default|Application Startup Completed
+2014-02-25 14:36:56.0506|INFO|Default|Application Shutdown
+2014-02-25 14:38:25.7926|INFO|Default|Application Startup Completed
+2014-02-25 14:41:06.1036|INFO|Default|Application Startup Completed
+2014-02-25 14:45:07.3546|INFO|Default|Application Shutdown
+2014-02-25 14:45:49.8736|INFO|Default|Application Startup Completed
+2014-02-25 14:45:50.2716|INFO|Default|Application Shutdown
+2014-02-25 14:45:52.0206|INFO|Default|Application Startup Completed
+2014-02-25 14:48:41.8786|INFO|Default|Application Startup Completed
+2014-02-25 14:51:32.8596|INFO|Default|Application Startup Completed
+2014-02-25 14:52:57.6435|INFO|Default|Application Startup Completed
+2014-02-25 14:54:46.8523|INFO|Default|Application Startup Completed
+2014-02-25 14:57:25.1159|INFO|Default|Application Startup Completed
+2014-02-25 15:02:07.9316|INFO|Default|Application Shutdown
+2014-02-25 15:02:17.1175|INFO|Default|Application Startup Completed
+2014-02-25 15:04:53.9972|INFO|Default|Application Shutdown
+2014-02-25 15:05:07.9876|INFO|Default|Application Startup Completed
+2014-02-25 15:17:30.9829|INFO|Default|Application Shutdown
+2014-02-25 15:25:40.2658|INFO|Default|Application Startup Completed
+2014-02-25 15:26:35.4913|INFO|Default|Application Shutdown
+2014-02-25 15:26:44.2622|INFO|Default|Application Startup Completed
+2014-02-25 15:31:03.1318|INFO|Default|Application Shutdown
+2014-02-25 15:31:21.0620|INFO|Default|Application Startup Completed
+2014-02-25 15:33:09.6774|INFO|Default|Application Shutdown
+2014-02-25 15:33:18.4504|INFO|Default|Application Startup Completed
+2014-02-25 15:36:04.5044|INFO|Default|Application Shutdown
+2014-02-25 15:36:14.5194|INFO|Default|Application Startup Completed
+2014-02-25 15:53:54.5818|INFO|Default|Application Startup Completed
+2014-02-25 15:59:11.5195|INFO|Default|Application Startup Completed
+2014-02-25 16:07:15.3089|INFO|Default|Application Shutdown
+2014-02-25 16:07:30.4734|INFO|Default|Application Startup Completed
+2014-02-25 16:11:42.4046|INFO|Default|Application Startup Completed
+2014-02-25 16:47:50.8050|INFO|Default|Application Shutdown
+2014-02-25 16:48:06.2115|INFO|Default|Application Startup Completed
+2014-02-25 16:48:06.6996|INFO|Default|Application Shutdown
+2014-02-25 16:48:08.7888|INFO|Default|Application Startup Completed
+2014-02-25 16:53:52.4382|INFO|Default|Application Startup Completed
+2014-02-25 16:55:39.8389|INFO|Default|Application Startup Completed

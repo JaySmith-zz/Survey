@@ -1,0 +1,30 @@
+﻿@using Tyson.Hr.Survey.Core.Domain
+@using Tyson.Hr.Survey.Core.Domain
+@model Tyson.Hr.Survey.ViewModels.QuestionViewModel
+
+@switch (Model.QuestionType)
+{
+    case QuestionInputType.RadioButton:
+        @Html.Partial("_RadioButton", Model)
+        break;
+    
+    case QuestionInputType.Checkbox:
+        @Html.Partial("_Checkbox", Model)
+        break;
+    
+    case QuestionInputType.Dropdown:
+        @Html.Partial("_Dropdown", Model)
+        break;
+    
+    case QuestionInputType.Date:
+        @Html.Partial("_Date", Model);
+        break;
+    
+    case QuestionInputType.Number:
+        @Html.Partial("_Number", Model);
+        break;
+ 
+    case QuestionInputType.Text:
+        @Html.Partial("_Text", Model);
+        break;
+}

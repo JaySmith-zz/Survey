@@ -1,0 +1,33 @@
+﻿@model Tyson.Hr.Survey.ViewModels.QuestionViewModel
+
+@foreach (var choice in Model.Choices)
+{
+    var isChecked = string.Empty;
+    if (choice.SelectedInd == "True")
+    {
+        isChecked = "checked";
+    }
+    
+    <input id="@choice.Identifier" data-val="@Model.IsRequired.ToString().ToLower()" data-val-required="*" type="radio" name="@Model.Id" @isChecked 
+        questionCode="@Model.QuestionCode" displayText="@choice.DisplayText" displayLogic='@Model.DisplayLogic'/>
+    <label for="@choice.Identifier">@choice.DisplayText</label>
+
+    if (String.IsNullOrEmpty(choice.DisplayText) == false)
+    {
+        if (choice.DisplayText.ToUpper().Contains("OTHER"))
+        {
+            var commentId = string.Format("{0}_Comment", Model.Id);
+
+            <span class="field-validation-valid" data-valmsg-for="@commentId" data-valmsg-replace="true" ></span>
+            if (choice.SelectedInd == "True")
+            {
+                <input type="text" maxlength="150" data-val="true" data-val-required="*" name="@commentId" id="@commentId" value="@choice.Comment" />
+            }
+            else
+            {
+                <input type="text" maxlength="150" data-val="true" data-val-required="*" name="@commentId" id="@commentId" value="@choice.Comment" style="display: none" />
+            }                     
+        }
+    }        
+    <br/>
+}

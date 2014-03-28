@@ -1,0 +1,31 @@
+2014-02-26 10:05:39.0624|INFO|Default|Application Startup Completed
+2014-02-26 10:06:37.0542|INFO|Default|Application Shutdown
+2014-02-26 10:06:46.4402|INFO|Default|Application Startup Completed
+2014-02-26 10:07:16.3311|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-26 10:08:04.3049|INFO|Default|Application Startup Completed
+2014-02-26 10:08:27.3212|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-26 10:09:03.4679|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-26 10:13:48.9754|INFO|Default|Application Shutdown
+2014-02-26 10:22:46.4726|INFO|Default|Application Startup Completed
+2014-02-26 10:24:53.8976|INFO|Default|Application Shutdown
+2014-02-26 10:25:02.0476|INFO|Default|Application Startup Completed
+2014-02-26 10:26:36.7312|INFO|Default|Application Shutdown
+2014-02-26 10:26:45.2460|INFO|Default|Application Startup Completed
+2014-02-26 10:31:43.5059|INFO|Default|Application Startup Completed
+2014-02-26 10:48:11.0226|INFO|Default|Application Shutdown
+2014-02-26 10:51:24.3154|INFO|Default|Application Startup Completed
+2014-02-26 10:56:33.2934|ERROR|Tyson.Hr.Survey.Filters.ExceptionLoggingFilter|http://localhost:52815/
+2014-02-26 11:05:30.7394|INFO|Default|Application Shutdown
+2014-02-26 11:05:43.3504|INFO|Default|Application Startup Completed
+2014-02-26 11:19:58.5595|INFO|Default|Application Shutdown
+2014-02-26 14:58:11.6497|INFO|Default|Application Startup Completed
+2014-02-26 14:58:11.9878|INFO|Default|Application Shutdown
+2014-02-26 14:58:13.3849|INFO|Default|Application Startup Completed
+2014-02-26 15:02:47.6123|INFO|Default|Application Shutdown
+2014-02-26 15:03:16.7202|INFO|Default|Application Startup Completed
+2014-02-26 15:03:27.5173|INFO|Default|Application Shutdown
+2014-02-26 15:03:29.0955|INFO|Default|Application Startup Completed
+2014-02-26 15:13:04.9120|INFO|Default|Application Shutdown
+2014-02-26 15:14:12.4358|INFO|Default|Application Startup Completed
+2014-02-26 15:17:45.1041|INFO|Default|Application Shutdown
+2014-02-26 15:26:09.7535|INFO|Default|Application Startup Completed

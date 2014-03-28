@@ -1,0 +1,310 @@
+﻿@using System.Globalization
+@using System.Web.Optimization
+@using Tyson.Hr.Survey.ViewModels
+@model HomeEditViewModel
+
+@{
+    ViewBag.Title = "Edit Questionnaire";
+    string currentCategoryCode = Model.Categories.Where(x => x.Id == Model.Questionnaire.CurrentCategoryId)
+                                      .Where(x => x.SurveyId == Model.Questionnaire.SurveyId)
+                                      .Select(x => x.Code).FirstOrDefault();
+}
+
+<h2>@Model.QuestionnaireName</h2>
+
+@Html.Hidden("hidQuestionnaireId", @Model.Questionnaire.QuestionnaireId.ToString(CultureInfo.InvariantCulture))
+@Html.Hidden("hidSurveyId", @Model.Questionnaire.SurveyId.ToString(CultureInfo.InvariantCulture))
+
+<p>
+    <label id="lblCategoriesSelection">Select a category: </label>
+    @Html.DropDownListFor(model => model.Categories.First().Code, new SelectList(Model.Categories, "Code", "Name", currentCategoryCode))
+    @if (User.IsInRole("Administrator"))
+    {
+        <a style="padding-right: 0;" href="javascript:void(0);" onclick=" HightlightUnanswered(); " title="Highlight Required Unanswered Questions">
+            <img style="border: 0;" src="@Url.Content("~/Content/Images/highlight-enabled.png")"/>
+        </a>
+    }
+    <br />
+    <span>Questions marked with <span class="field-validation-error">*</span> are required!</span>
+</p>
+
+<form id="formQuestionnaire">
+    <div style="float: right; margin-top: 20px;">
+        <input id="buttonPreviousTop" type="button" value="Previous" title="Go to Previous Category" />
+        <input id="buttonNextTop" type="button" value="Next" title="Go to Next Category" />
+        <input id="buttonSaveTop" type="button" value="Save" title="Save changes to current cagetory" />
+        <input id="buttonCompleteTop" type="button" value="Complete" title="Save & Complete questionnaire" disabled="disabled" />
+    </div>
+
+    @foreach (CategoryViewModel category in Model.Categories)
+    {
+        if (category.Questions.Count == 0)
+        {
+            continue;
+        }
+
+        <div id="@category.Code" surveyId="@category.SurveyId" style="display: none">
+            <h3 style="clear: both">@category.Name</h3>
+            <p class="CategoryDescription">@category.Description</p>
+            <table style="margin-left: 20px">
+                @foreach (QuestionViewModel question in category.Questions)
+                {
+                    var disabled = question.Status;
+                    <tr class="@question.QuestionCode" questionCode="@question.QuestionCode" displayLogic="@question.DisplayLogic" questionId="@question.Id" @disabled>
+                        <td width="500">
+                            @Html.LabelFor(model => question.Value, question.Question)
+                            @{
+                    if (question.IsRequired)
+                    {
+                                <span class="field-validation-error">*</span>
+                    }
+                            }
+                            <span class="field-validation-valid" data-valmsg-for="@question.Id" data-valmsg-replace="true" ></span>
+                        </td>
+                        <td width="400">
+                            @Html.Partial("_Question", question)
+                        </td>
+                        @{
+                            if (User.IsInRole("Support"))
+                            {
+                            <td>
+                                <img style="border: 0;" src="@Url.Content("~/Content/Images/messagebox_info.png")" title="Id: @question.Id&#10;Status: @question.Status&#10;Code: @question.QuestionCode&#10;IsRequired: @question.IsRequired.ToString()&#10;IsKey: @question.IsKey.ToString()&#10;DisplayLogic: @question.DisplayLogic"
+                                    />
+                                <div id="questionInfo_@question.Id" style="display: none; float: right">
+                                    Id: @question.Id<br />
+                                    Status: @question.Status<br />
+                                    Code: @question.QuestionCode<br />
+                                    IsRequired: @question.IsRequired<br />
+                                    IsKey: @question.IsKey<br />
+                                    DisplayLogic: @question.DisplayLogic<br />
+                                </div>
+                            </td>
+                            }
+                        }
+                    </tr>
+                }
+            </table>
+
+            <div style="float: right; margin-top: 20px;">
+                <input id="buttonPrevious" type="button" value="Previous" title="Go to Previous Category" />
+                <input id="buttonNext" type="button" value="Next" title="Go to Next Category" />
+                <input id="buttonSave" type="button" value="Save" title="Save changes to current cagetory" />
+                <input id="buttonComplete" type="button" value="Complete" title="Save & Complete questionnaire" disabled="disabled" />
+            </div>
+        </div>
+    }
+</form>
+
+<div style="display: none;" id="questionniare-complete-modal" title="Complete...">
+    You have completed the questionnaire. 
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/survey.questionnaire")
+    <script src="~/Scripts/json2.min.js" type="text/javascript"></script>
+    @Html.Partial("AjaxUrls")
+    <script type="text/javascript">
+
+        var maxDisplayLogicDepth = @Model.DisplayLogicDepth + 0;
+        var questionnaireForm = $("#formQuestionnaire");
+        var requiredQuestionIds = @Html.Raw(Json.Encode(Model.RequiredQuestionIds));
+        var answeredQuestionIds = @Html.Raw(Json.Encode(Model.AnsweredQuestionIds));
+    </script>
+
+    <script type="text/javascript">
+        var previousCategory;
+        var state = new QuestionnaireState();
+
+        $().ready(function() {
+
+            state.addRequiredIds(requiredQuestionIds);
+            state.addAnsweredIds(answeredQuestionIds);
+
+            Initialize();
+            EnableCompleteButton();
+        });
+
+        function Initialize() {
+            $.validator.messages.required = '*';
+            $("table").css("border-collapse", "collapse");
+            $("table").find("TR:odd").css("background-color", "#FFFFFF");
+
+            InitializeCategoryDropdown();
+            InitializeDatePickers();
+            InitializeInputChangeHandlers();
+            InitializeNavigation();
+        }
+
+        function InitializeCategoryDropdown() {
+            ShowCurrentCategory();
+
+            $("#Code").change(CategoryDropDownListChange);
+            $("#Code").focus(function() { previousCategory = this.value; /* Store the current value before change */ });
+        }
+
+        function InitializeDatePickers() {
+            $("input[questionType='date']").each(function() {
+
+                $(this).change(function() {
+                    $(this).valid();
+                });
+
+                $(this).datepicker({
+                    dateFormat: "mm/dd/yy",
+                    changeMonth: true,
+                    changeYear: true,
+                    showOn: "button",
+                    buttonImage: "@Url.Content("~/Content/Images/calendar_blue.gif")",
+                    buttonImageOnly: true,
+                    yearRange: "-60:+0"    /* -40: go back 40 years; +0: go forward 0 years */,
+                    onSelect: function() {
+                        $(this).valid();
+                        DateChangeHandler(this);
+                    }
+                });
+            });
+        }
+
+        function InitializeInputChangeHandlers() {
+            $("input[type=radio]").change(RadioButtonChangeHandler);
+            $("input[type=checkbox]").change(CheckboxChangeHandler);
+            $("select[id!=Code]").change(SelectOneChangeHandler);
+            $("input[type=text]").change(TextboxChangeHandler);
+        }
+
+        function InitializeNavigation() {
+            $("input[type='button'][id='buttonSave']").click(ButtonSaveClick);
+            $("input[type='button'][id='buttonSaveTop']").click(ButtonSaveClick);
+            $("input[type='button'][id='buttonComplete']").click(ButtonCompleteClick);
+            $("input[type='button'][id='buttonCompleteTop']").click(ButtonCompleteClick);
+
+            $("input[type='button'][id='buttonNextTop']").click(ButtonNextClick);
+            $("input[type='button'][id='buttonNext']").click(ButtonNextClick);
+            $("input[type='button'][id='buttonPreviousTop']").click(ButtonPreviousClick);
+            $("input[type='button'][id='buttonPrevious']").click(ButtonPreviousClick);
+        }
+
+        function DateChangeHandler(datePicker) {
+            state.addAnsweredId(datePicker.name);
+            ApplyDisplayLogic(datePicker, maxDisplayLogicDepth, 0);
+            EnableCompleteButton();
+        }
+
+        
+
+        function RadioButtonChangeHandler() {
+
+            state.addAnsweredId(this.name);
+            HandleOtherCommentForCheckboxAndRadioButton(this);
+            ApplyDisplayLogic(this, maxDisplayLogicDepth, 0);
+            EnableCompleteButton();
+        }
+
+        function CheckboxChangeHandler() {
+            var atLeastOneIsChecked = $("input[name='" + this.name + "']:checked").length > 0;
+
+            if (!state.answeredContains(this.name) && atLeastOneIsChecked) {
+                state.addAnsweredId(this.name);
+            } else if (!atLeastOneIsChecked) {
+                state.removeAnsweredId(this.name);
+            }
+
+            HandleOtherCommentForCheckboxAndRadioButton(this);
+            ApplyDisplayLogic(this, maxDisplayLogicDepth, 0);
+            ApplyDisplayLogic(this, maxDisplayLogicDepth, 0);
+            EnableCompleteButton();
+        }
+
+        function SelectOneChangeHandler() {
+            if (!state.answeredContains(this.name) && this.selectedIndex > 0) {
+                state.addAnsweredId(this.name);
+            } else if (this.selectedIndex <= 0) {
+                state.removeAnsweredId(this.name);
+            }
+
+            HandleOtherCommentForDropdown(this);
+            ApplyDisplayLogic(this, maxDisplayLogicDepth, 0);
+            EnableCompleteButton();
+        }
+
+        function EnableCompleteButton() {
+            var enabled = state.isComplete();
+            $("input[type='button'][id='buttonComplete']").prop("disabled", !enabled);
+            $("input[type='button'][id='buttonCompleteTop']").prop("disabled", !enabled);
+        }
+
+        function ButtonCompleteClick() {
+            SaveData("Current");
+            SetQuestionnareStatus(questionnaireId, "Complete", window.ajaxSetQuestionnaireStatusUrl);
+            window.location.href = "/";
+        }
+
+        function DisplayError(errorMessage) {
+            alert("Error: " + errorMessage);
+        }
+
+        function AjaxRedirectToHomeOnSuccess() {
+            window.location.href = window.HomeUrl;
+            return false;
+        }
+
+        
+
+        
+
+        function ButtonNextEnable() {
+            var buttonNext = $("input[id=buttonNext]");
+            var buttonNextTop = $("input[id=buttonNextTop]");
+
+            buttonNext.removeAttr("disabled");
+            buttonNextTop.removeAttr("disabled");
+        }
+
+        function ButtonNextDisable() {
+            var buttonNext = $("input[id=buttonNext]");
+            var buttonNextTop = $("input[id=buttonNextTop]");
+
+            buttonNext.attr("disabled", true);
+            buttonNextTop.attr("disabled", true);
+        }
+
+        function ButtonPreviousEnable() {
+            var buttonPrevious = $("input[id=buttonPrevious]");
+            var buttonPreviousTop = $("input[id=buttonPreviousTop]");
+
+            buttonPrevious.removeAttr("disabled");
+            buttonPreviousTop.removeAttr("disabled");
+        }
+
+        function ButtonPreviousDisable() {
+            var buttonPrevious = $("input[id=buttonPrevious]");
+            var buttonPreviousTop = $("input[id=buttonPreviousTop]");
+
+            buttonPrevious.attr("disabled", true);
+            buttonPreviousTop.attr("disabled", true);
+        }
+
+        function ButtonSaveClick(e) {
+
+            e.preventDefault();
+
+            SaveData("Current");
+            SaveDialogShow();
+        }
+
+        
+
+        function SaveData(previousOrCurrentCategory) {
+            var category;
+
+            if (previousOrCurrentCategory == "Previous") {
+                category = window.previousCategory;
+            } else {
+                category = $("#Code option:selected").val();
+            }
+
+            window.SaveResponsesToQuestionForCategory(category);
+        }
+    </script>
+}
